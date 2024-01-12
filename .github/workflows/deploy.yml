@@ -21,6 +21,12 @@ jobs:
       - name: Remove Exist Build
         run: rm -rf dist
 
+      - name: Update npm packages
+        run: |
+          npm install -g npm-check-updates
+          ncu -u
+          npm install
+
       - name: Install dependencies
         run: npm install
 
