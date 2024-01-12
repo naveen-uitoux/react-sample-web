@@ -182,27 +182,26 @@ export default App;
 function App() {
   const [selectedTopic, setSelectedTopic]= useState('Component');
   
-  
   function handleClick(selectedButton){
     //selectedButton should be any 1 of this [ component, jsx, props, state]
     setSelectedTopic(selectedButton);
     console.log(selectedTopic)
-
   }
+
   return (
     <>
-    <Header /> 
+      <Header /> 
       <main>
-      <h2>Time to get started</h2>
-      <section id="core-concepts">
-      <h2>Core Concepts</h2>
-      <ul className="concept-list">
-        {coreConceptsList.map((data, i)=> (
-          <CoreConcepts title={data.title} description={data.description} key={i} />
-        ))}
-      </ul>
-      </section>
-      <section id ="Examples">
+        <h2>Time to get started</h2>
+        <section id="core-concepts">
+          <h2>Core Concepts</h2>
+          <ul className="concept-list">
+            {coreConceptsList.map((data, i)=> (
+              <CoreConcepts title={data.title} description={data.description} key={i} />
+            ))}
+          </ul>
+        </section>
+        <section id ="Examples">
           <h2>Examples</h2>
           <menu>
             <TabButton isSelected ={selectedTopic === "Component"} onSelect={ ()=> handleClick('Component')}>Component</TabButton>
@@ -218,8 +217,7 @@ function App() {
           ): (
             <p>Please select the Title</p>
           )}
-          
-      </section>
+        </section>
       </main>
     </>
   );
