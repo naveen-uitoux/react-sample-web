@@ -3,7 +3,7 @@
 
 # .github/workflows/deploy.yml
 
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
@@ -12,33 +12,43 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Remove Exist Build
-        run: rm -rf dist
-
-      - name: Update npm packages
-        run: |
-          npm install -g npm-check-updates
-          ncu -u
-          npm install
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        uses: bahmutov/npm-install@v1
 
-      - name: Build
+      - name: Build project
         run: npm run build
+      
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
 
   deploy:
-    runs-on: ubuntu-latest
-
+    name: Deploy
     needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
