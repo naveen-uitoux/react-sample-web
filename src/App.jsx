@@ -209,13 +209,14 @@ function App() {
             <TabButton isSelected ={selectedTopic === "Props"} onSelect={()=> handleClick('Props')}>Props</TabButton>
             <TabButton isSelected ={selectedTopic === "State"} onSelect={()=> handleClick('State')}>State</TabButton>
           </menu>
-          {!selectedTopic&& <p>Please select the Title</p>}
-          {selectedTopic && 
+          {selectedTopic ?  (
             <div id="tab-content">
               <p>{EXAMPLES[selectedTopic].Title}</p>
               <p>{EXAMPLES[selectedTopic].Description}</p>
             </div>
-          }
+          ): (
+            <p>Please select the Title</p>
+          )}
           
       </section>
       </main>
