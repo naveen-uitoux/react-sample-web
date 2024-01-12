@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useState, Fragment} from 'react';
 import { coreConceptsList, EXAMPLES } from "./data.js";
 import './App.css'
