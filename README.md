@@ -2,7 +2,7 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- [View Build Page] (https://naveen-uitoux.github.io/react-sample-web)
+- [View Build Page](https://naveen-uitoux.github.io/react-sample-web)
 
 Currently, two official plugins are available:
 
